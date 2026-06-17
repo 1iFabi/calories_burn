@@ -33,7 +33,7 @@ El siguiente dataset contiene una amplia variedad de actividades físicas, defin
 >  Para efectos de este análisis y con el fin de estandarizar los resultados a la forma que se mide en Chile el peso, se utilizará la variable kilogramos (kg).
 
 ## Modelo Seleccionado
-Se seleccionará un modelo de Regresión Lineal Múltiple. El algoritmo tomará como variables de entrada (features) el peso del usuario (calculado en kilogramos) y el factor de gasto de la actividad (Calories per kg), prediciendo el gasto calórico teórico para una hora. Luego, mediante una función matemática simple, escalará ese valor al tiempo específico disponible declarado por el usuario (ej. si el usuario tiene 30 minutos, el valor predicho se multiplicará por 0.5).
+Se seleccionará un modelo de Regresión Lineal. El algoritmo tomará como variables de entrada (features) el peso del usuario (calculado en kilogramos) y el factor de gasto de la actividad (Calories per kg), prediciendo el gasto calórico teórico para una hora. Luego, mediante una función matemática simple, escalará ese valor al tiempo específico disponible declarado por el usuario (ej. si el usuario tiene 30 minutos, el valor predicho se multiplicará por 0.5).
 
 Una vez calculadas las calorías personalizadas para ese tiempo en todas las actividades, un algoritmo de ordenamiento filtrará aquellas que alcancen el objetivo del usuario y las listará de mayor a menor eficiencia calórica.
 
@@ -50,4 +50,4 @@ El gasto energético ($E$) es directamente proporcional a la masa corporal ($m$)
 
 ## Limitaciones del modelo en este contexto
 
-El modelo asume que el gasto calórico se mantiene constante a lo largo del tiempo. Cosa que no es así, ya que en realidad factores como la fatiga humana alteran completamente la constancia de los resultados que están planteados.
+El modelo asume que el gasto calórico se mantiene constante a lo largo del tiempo. Cosa que no es así, ya que en realidad factores como la fatiga humana alteran completamente la constancia de los resultados que están planteados. Además como segundo punto, el dataset no incorpora variables demográficas como el género, edad o condición de salud, las cuales influyen directamente en el gasto calórico. Por consecuencia, el modelo ofrece una aproximación simplificada de lo razonable a realizar, pero no captura la variabilidad de cada usuario.
