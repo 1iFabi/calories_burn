@@ -42,6 +42,7 @@ Al ser un problema de regresión, los datos se dividirán de forma aleatoria en 
 Evaluaremos la precisión de la predicción numérica utilizando dos métricas clave:
 
 - R-Cuadrado ($R^2$)
+- Error Cuadrático Medio (MSE)
 - Error Absoluto Medio (MAE)
 
 ## Justificación del Modelo
