@@ -52,3 +52,12 @@ El gasto energético ($E$) es directamente proporcional a la masa corporal ($m$)
 ## Limitaciones del modelo en este contexto
 
 El modelo asume que el gasto calórico se mantiene constante a lo largo del tiempo. Cosa que no es así, ya que en realidad factores como la fatiga humana alteran completamente la constancia de los resultados que están planteados. Además como segundo punto, el dataset no incorpora variables demográficas como el género, edad o condición de salud, las cuales influyen directamente en el gasto calórico. Por consecuencia, el modelo ofrece una aproximación simplificada de lo razonable a realizar, pero no captura la variabilidad de cada usuario.
+
+# Activación Ambiente Conda
+
+### 1. Crear el enviroment de Conda
+
+conda env create -f ambiente.yaml
+
+### 2. Activar el Enviroment
+conda activate Ejercicios
