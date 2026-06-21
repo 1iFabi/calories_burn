@@ -56,40 +56,40 @@ El modelo asume que el gasto calórico se mantiene constante a lo largo del tiem
 
 La **primera etapa** consistió en el Análisis Exploratorio de Datos (EDA). Se cargó el dataset y se verificó su estructura, confirmando que tenia 248 ffilas y 6 columnas sin valores nulos ni duplicados, Ver **Imagen 1**.
 
-![dataset](imagenes/dataset.png)
+![dataset](Imagenes/dataset.png)
 
 Se renombraron las columnas para lograr estandarizar las unidades a kilogramos. Se aplicaron técnicas de estadística descriptiva, histograma, boxplots y gráficos de dispersión para lograr tener una visión clara de las variables y poder detectar anomalías. En este proceso se hizo un hallazgo crítico en la columna de Calorias por Kilo, visto en la **Imagen 2**.
 
-![calorias x lb](imagenes/calorias%20x%20lb.png "Imagen 2")
+![calorias x lb](Imagenes/calorias%20x%20lb.png "Imagen 2")
 
 Los valores reportados en el dataset estaban en calorias por libra en lugar de por kilogramo, producto de un error de conversión del autor del dataset. Para lograr convertirlo a kg se aplicó el factor de corrección 4.8602 (2 x peso de lb a kg), para así obtener resultados fisiologicamente más realistas. Quedando como la **Imagen 3**.
 
-![calorias x kg](imagenes/calorias%20x%20kg.png "Imagen 3")
+![calorias x kg](Imagenes/calorias%20x%20kg.png "Imagen 3")
 
 En particular el comportamiento de los boxplots de las cuatro columnas de peso, reveló un comportamiento característico: las cajas presentaban un tamaño y una proporción visualmente similares entre sí, se iba desplazando progresivamente hacia valores más altos mientras aumentaba el peso de referencia, Ver **Imagen 4 y 5**.
 
-![boxplots](imagenes/boxplots1.png "Imagen 4")
-![boxplots](imagenes/boxplots2.png "Imagen 5")
+![boxplots](Imagenes/boxplots1.png "Imagen 4")
+![boxplots](Imagenes/boxplots2.png "Imagen 5")
 
 A partir de este hallazgo se puso asumar que las cuatro columnas presentarian una correlación casi perfecta ente sí, dado que representan el mismo gasto calorico medido a distintos pesos corporales. Dando la siguiente matriz de correlación, ver **Imagen 6**.
 
-![corr](imagenes/matrizcorr.png "Imagen 6")
+![corr](Imagenes/matrizcorr.png "Imagen 6")
 
 La confirmación de esta hipótesis, que arrojó valores superiores a 0.99 entre todos los pares de columnas de peso, me dió el siguiente hallazgo en poder justificar la necesidad de restructurar el dataset en un formato largo, donde las variables de peso aparecen como una única variable la cual es continua, así evitando la redudancia.
 
 La **segunda etapa** consistió en el preprocesamiento de los datos, el cual inicialmente se tuvo que hacer la reestructuración del dataset de formato ancho a formato largo, mediante la operación data.melt. Generando un nuevo dataset de 992 filas (248 actividades por 4 pesos de referencia) con tres columnas (Ver **Imagen 7**):
 
-![ndatset](imagenes/nuevodataset.png "Imagen 7")
+![ndatset](Imagenes/nuevodataset.png "Imagen 7")
 
 La variable categórica Actividad fue codificada mediante One-Hot Encoding para lograr transformarla a numérica y ColumnTransformer para aplicarlo a la columna de Actividad, para así permitir su procesamiento por el modelo.
 
 La **tercera etapa** correspondió al entrenamiento del modelo. Primeramente se construyó un Pipeline, que encadena el preprocesamiento y el modelo de Regresión Lineal(Ver **Imagen 8**). El dataset se dividió en 80% para entrenamiento y 20% para prueba, utilizando como random_state=42 para mantener la reproducibilidad. 
 
-![pipeline](imagenes/pipeline.png "Imagen 8")
+![pipeline](Imagenes/pipeline.png "Imagen 8")
 
 En la **cuarta etapa** correspondió a la evaluación del modelo, se aplicó inicialmente la validación cruzada 5-fold, evaluando exclusivamente sobre el conjunto de entrenamiento (80% de los datos). (Ver **Imagen 9**)
 
-![cross](imagenes/cross_val.png "Imagen 9")
+![cross](Imagenes/cross_val.png "Imagen 9")
 
 
 Al tener una comprobación de que el modelo es estable y generaliza de manera constante a través de distintas particiones del conjunto de entrenamiento. Se procedió a establecer el ajuste final con el 80 % de los datos reservados para el entrenamiento.
@@ -104,11 +104,11 @@ Como **quinta etapa** se construyó una función donde se recibe de input la act
 
 ### Gráfico de Dispersión: Regresión Lineal
 
-![dispersion regresion](imagenes/dispersion_reg.png)
+![dispersion regresion](Imagenes/dispersion_reg.png)
 
 ### Gráfico de Dispersión: ElasticNet
 
-![dispersion elastic](imagenes/dispersion_elastic.png)
+![dispersion elastic](Imagenes/dispersion_elastic.png)
 
 
 ## Métricas de Evaluación
